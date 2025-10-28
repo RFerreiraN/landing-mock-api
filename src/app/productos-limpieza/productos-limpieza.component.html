@@ -5,6 +5,7 @@
       <th scope="col">#</th>
       <th scope="col">Producto</th>
       <th scope="col">Precio</th>
+      <th scope="col">Descripción</th>
       <th scope="col">Detalle</th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
       <th scope="row">{{producto.id}}</th>
       <td>{{producto.title}}</td>
       <td>{{producto.price | currency }}</td>
+      <td>{{producto.description }}</td>
       <button class="btn btn-outline-primary mb-2" [routerLink]="['/productosLimpieza', producto.id]">Detalle</button>
     </tr>
   </tbody>

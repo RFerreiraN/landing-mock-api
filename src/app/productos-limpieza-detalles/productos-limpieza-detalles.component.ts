@@ -11,7 +11,7 @@ import { productList } from '../productos-limpieza/productos.mock';
 })
 export class ProductosLimpiezaDetallesComponent implements OnInit {
   producto? : Producto;
-  productList : Producto[] = productList;
+  productList? = productList;
 
   constructor(
     private _router : ActivatedRoute
