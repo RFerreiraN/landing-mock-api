@@ -1,1 +1,7 @@
-<p>productos-limpieza-detalles works!</p>
+<div class="card ms-4" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{producto?.title}}</h5>
+    <p class="card-text">{{producto?.description}}</p>
+    <button [routerLink]="['/productosLimpieza']" class="btn btn-primary">Volver</button>
+  </div>
+</div>
