@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class ContactoComponent {
 
+    public usuario = {
+      nombre : '',
+      email : ''
+    }
+    constructor(){}
+
+    enviar(){
+      console.log(this.usuario)
+    }
 }

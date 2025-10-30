@@ -10,6 +10,7 @@ import { ProductosLimpiezaComponent } from './productos-limpieza/productos-limpi
 import { ProductosLimpiezaDetallesComponent } from './productos-limpieza-detalles/productos-limpieza-detalles.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { ContactoComponent } from './contacto/contacto.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
