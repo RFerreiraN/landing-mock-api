@@ -11,9 +11,18 @@ export class ContactoComponent {
       nombre : '',
       email : ''
     }
-    constructor(){}
 
-    enviar(){
-      console.log(this.usuario)
+    resetForm(form: any){
+      form.resetForm()
     }
+
+    enviar(form : any){
+      if(form.valid){
+          console.log('Formulario válido: ', this.usuario)
+      }else{
+        console.log('Formulario inválido')
+      }
+      this.resetForm(form)
+    }
+
 }
