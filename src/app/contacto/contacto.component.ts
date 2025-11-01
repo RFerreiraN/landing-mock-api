@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ContactoComponent {
 
-  formularioContacto?: FormGroup
+  formularioContacto: FormGroup
 
   constructor(private form: FormBuilder) {
     // Formulario Reactivo
@@ -16,6 +16,10 @@ export class ContactoComponent {
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     })
+  }
+
+  enviarReactivo(){
+      console.log(this.formularioContacto.value)
   }
 
   //Formulario de Plantilla
