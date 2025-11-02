@@ -1,0 +1,11 @@
+
+/* Ajusta el tamaño del bloque de cada input flotante */
+.form-floating {
+  width: 180px;
+
+}
+
+.form-floating > label {
+  color: #6c757d;
+}
+

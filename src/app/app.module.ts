@@ -11,6 +11,7 @@ import { ProductosLimpiezaDetallesComponent } from './productos-limpieza-detalle
 import { CarritoComponent } from './carrito/carrito.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductosLimpiezaComponent,
     ProductosLimpiezaDetallesComponent,
     CarritoComponent,
-    ContactoComponent
+    ContactoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
