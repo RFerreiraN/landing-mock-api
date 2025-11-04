@@ -13,13 +13,13 @@ export class ContactoComponent {
   constructor(private form: FormBuilder) {
     // Formulario Reactivo
     this.formularioContacto = this.form.group({
-      nombre: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.email]]
     })
 
   }
 
-  enviarReactivo(form : any) {
+  enviarReactivo(form : FormGroup) {
     console.log(form.value)
     form.reset()
   }

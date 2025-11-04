@@ -29,11 +29,16 @@
       <label for="name" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="name" name="nombre" formControlName="nombre">
     </div>
+    <div class="text-danger" *ngIf="formularioContacto.get('nombre')?.hasError('required') && formularioContacto.get('nombre')?.touched">Nombre Requerido</div>
+    <div class="text-danger" *ngIf="formularioContacto.get('nombre')?.hasError('minlength')">Nombre Requiere mínimo 5 caracteres</div>
     <div class="mb-3">
       <label for="email1" class="form-label">Email</label>
       <input type="text" class="form-control" id="email1" formControlName="email">
     </div>
-    <button type="submit" class="btn btn-danger" [disabled]="formularioContacto.invalid">Enviar</button>
+    <div class="text-danger" *ngIf="formularioContacto.get('email')?.hasError('required') && formularioContacto.get('email')?.touched">Email Requerido</div>
+    <div class="text-danger" *ngIf="formularioContacto.get('email')?.hasError('email')">Formato de Email Invalido</div>
+
+    <button type="submit" class="btn btn-outline-danger" [disabled]="formularioContacto.invalid">Enviar</button>
   </form>
 </div>
 
