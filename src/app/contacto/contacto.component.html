@@ -1,44 +1,21 @@
 <div class="container">
-  <h1>Formulario Template-Driven</h1>
-  <form #miFomrulario="ngForm" (ngSubmit)="enviar(miFomrulario)">
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" [(ngModel)]="usuario.nombre" #nombre="ngModel" name="nombre"
-        required>
-      <div *ngIf="!nombre.valid && nombre.touched" class="text-danger small">
-        Este Campo es Obligatorio
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="text" class="form-control" id="email" [(ngModel)]="usuario.email" #email="ngModel" name="email" email
-        required>
-      <div *ngIf="!email.valid && email.touched" class="text-danger small">
-        Este Campo es Obligatorio
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="miFomrulario.invalid">Enviar</button>
-  </form>
+  <form [formGroup]="formularioContacto" (ngSubmit)="enviar(formularioContacto)">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre Usuario</label>
+    <input [ngClass]="{'is-invalid' : hasError('nombre', 'required') || hasError('nombre', 'minlength') }" type="text" class="form-control" id="nombre" formControlName="nombre">
+    <!-- <div class="text-danger small" *ngIf="formularioContacto.get('nombre')?.hasError('required') && formularioContacto.get('nombre')?.touched">Nombre Requerido</div>
+    <div class="text-danger small" *ngIf="formularioContacto.get('nombre')?.hasError('minlength')">Nombre Requiere mínimo 6 caracteres</div> -->
+    <div class="text-danger small" *ngIf="hasError('nombre', 'required')">Nombre Requerido</div>
+    <div class="text-danger small" *ngIf="hasError('nombre', 'minlength')">Nombre Requiere mínimo 6 caracteres</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email Usuario</label>
+    <input [ngClass]="{'is-invalid' : hasError('email', 'required') || hasError('email', 'email')}" type="text" class="form-control" id="email" formControlName="email">
+    <div class="text-danger small" *ngIf="hasError('email', 'required')">Email Requerido</div>
+    <div class="text-danger small" *ngIf="hasError('email', 'email')">Formato Inválido de Email</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!formularioContacto.valid">Submit</button>
+</form>
 </div>
-
-
-<div class="container mt-3">
-  <h1 class="mt-3">Formulario Reactivo</h1>
-  <form [formGroup]="formularioContacto" (ngSubmit)="enviarReactivo(formularioContacto)">
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" name="nombre" formControlName="nombre">
-    </div>
-    <div class="text-danger" *ngIf="formularioContacto.get('nombre')?.hasError('required') && formularioContacto.get('nombre')?.touched">Nombre Requerido</div>
-    <div class="text-danger" *ngIf="formularioContacto.get('nombre')?.hasError('minlength')">Nombre Requiere mínimo 5 caracteres</div>
-    <div class="mb-3">
-      <label for="email1" class="form-label">Email</label>
-      <input type="text" class="form-control" id="email1" formControlName="email">
-    </div>
-    <div class="text-danger" *ngIf="formularioContacto.get('email')?.hasError('required') && formularioContacto.get('email')?.touched">Email Requerido</div>
-    <div class="text-danger" *ngIf="formularioContacto.get('email')?.hasError('email')">Formato de Email Invalido</div>
-
-    <button type="submit" class="btn btn-outline-danger" [disabled]="formularioContacto.invalid">Enviar</button>
-  </form>
-</div>
-

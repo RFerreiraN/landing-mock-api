@@ -3,6 +3,9 @@
   <img src={{productoDetalle?.image}} class="card-img-top" alt={{productoDetalle?.title}}>
   <div class="card-body">
     <h5 class="card-title">{{productoDetalle?.title}}</h5>
-    <a class="btn btn-outline-primary">Agregar a Carrito</a>
+    <div class="btn-group">
+      <a class="btn btn-outline-primary">Agregar a Carrito</a>
+      <a class="btn btn-outline-success" [routerLink]="['/productos']">Volver</a>
+    </div>
   </div>
 </div>
