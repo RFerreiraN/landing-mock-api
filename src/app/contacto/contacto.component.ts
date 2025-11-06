@@ -14,13 +14,22 @@ export class ContactoComponent {
   this.formularioContacto =this.fb.group({
     nombre : ['', [Validators.required, Validators.minLength(6)]],
     email : ['', [Validators.required, Validators.email]],
-    password : ['', [Validators.required, Validators.minLength, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]]
+    password : ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]]
   })    
   };
 
-  enviar( form : FormGroup ){
-    console.log(form.value);
+ enviar(form: FormGroup) {
+  if (form.valid) {
+    console.log('Datos enviados:', form.value);
     form.reset();
+  } else {
+    form.markAllAsTouched(); 
+  }
+}
+
+  hasError( controlInput : string, typeError : string ){
+    return this.formularioContacto.get(controlInput)?.hasError(typeError) 
+      && (this.formularioContacto.get(controlInput)?.touched || this.formularioContacto.get(controlInput)?.dirty )
   }
 
 }

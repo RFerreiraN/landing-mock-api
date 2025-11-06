@@ -1,21 +1,32 @@
 <div class="container">
   <form [formGroup]="formularioContacto" (ngSubmit)="enviar(formularioContacto)">
+
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre de usuario</label>
-      <input type="text" class="form-control" id="nombre" formControlName="nombre">
+      <input [ngClass]="{'is-invalid' : hasError('nombre', 'required') || hasError('nombre', 'minlength') }" type="text" class="form-control" id="nombre" formControlName="nombre">
+      <div class="text-danger small" *ngIf="hasError('nombre', 'required')">Nombre es requerido</div>
+      <div class="text-danger small" *ngIf="hasError('nombre', 'minlength')">Nombre requiere mínimo 6 caractéres</div>
     </div>
+
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="text" class="form-control" id="email" formControlName="email">
+      <input [ngClass]="{'is-invalid' : hasError('email', 'required') || hasError('email', 'email') }" type="text" class="form-control" id="email" formControlName="email">
+      <div class="text-danger small" *ngIf="hasError('email', 'required')">Email es requerido</div>
+      <div class="text-danger small" *ngIf="hasError('email', 'email')">Formato de email inválido</div>
     </div>
+
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password">
+      <input [ngClass]="{'is-invalid' : hasError('password', 'required') || hasError('password', 'minlength') || hasError('password', 'pattern')}" type="password" class="form-control" id="password" formControlName="password">
+      <div class="text-danger small" *ngIf="hasError('password', 'required')">Contraseña es requerido</div>
+      <div class="text-danger small" *ngIf="hasError('password', 'minlength')">Contraseña requiere mínimo 8 caractéres</div>
+      <div class="text-danger small" *ngIf="hasError('password', 'pattern')">Se requiere : 1 letra Mayúscula, 1 letra minúscula y 1 caractér especial</div>
     </div>
+
     <button type="submit" class="btn btn-primary" [disabled]="!formularioContacto.valid">Registrar</button>
+
   </form>
 </div>
 
 
 
-<!-- TODO, volver hacer el formulario desde cero con dirty -->
