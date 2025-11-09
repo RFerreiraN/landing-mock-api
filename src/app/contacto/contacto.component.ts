@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -7,16 +7,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css']
 })
-export class ContactoComponent {
+export class ContactoComponent implements OnInit{
   formularioContacto : FormGroup;
+  tipoId : string = 'DNI'
 
  constructor( private fb : FormBuilder ){
+
   this.formularioContacto =this.fb.group({
     nombre : ['', [Validators.required, Validators.minLength(6)]],
     email : ['', [Validators.required, Validators.email]],
+    dni : ['', [Validators.required, Validators.minLength(8), Validators.pattern('^([0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]|[A-Z0-9]{6,9})$')]],
+    tipoDni : [''],
     password : ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]]
   })    
   };
+
+  ngOnInit(): void {
+    this.formularioContacto.get('tipoDni')?.valueChanges.subscribe(valor => {
+      this.tipoId = valor;
+      console.log(this.tipoId)
+    })
+  }
 
  enviar(form: FormGroup) {
   if (form.valid) {
