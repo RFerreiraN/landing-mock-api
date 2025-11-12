@@ -16,7 +16,7 @@ export class ContactoComponent implements OnInit{
       nombre : ['', Validators.required],
       apellidos : ['', Validators.required],
       tipoId : ['DNI'],
-      id : ['', Validators.required],
+      id : [''],
       email : ['', [Validators.required, Validators.email]],
       password : ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]+$/)]]
     })
@@ -25,9 +25,10 @@ export class ContactoComponent implements OnInit{
   ngOnInit(): void {
     this.formularioContacto.get('tipoId')?.valueChanges.subscribe( valor => {
       this.tipoId = valor
+      this.validacionCampos(valor)
     })
-    
-    
+
+    this.validacionCampos(this.tipoId)
   }
 
   validacionCampos(tipoId : string){
