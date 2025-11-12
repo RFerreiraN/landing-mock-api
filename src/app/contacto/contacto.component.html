@@ -1,58 +1,53 @@
 <div class="container">
-  <form [formGroup]="formularioRegistro" (ngSubmit)="enviar(formularioRegistro)">
+  <form [formGroup]="formularioContacto" (ngSubmit)="enviar(formularioContacto)">
+
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre</label>
-      <input [ngClass]="{'is-invalid' : hasError('nombre','required')}" type="text" class="form-control" id="nombre"
-        formControlName="nombre">
-      <div class="text-danger small" *ngIf="hasError('nombre','required')">Nombre es requerido</div>
+      <input [ngClass]="{'is-invalid' : hasError('nombre','required')}" type="text" class="form-control" id="nombre" formControlName="nombre">
+      <div class="text-danger small" *ngIf="hasError('nombre', 'required')">Nombre es requerido</div>
     </div>
 
     <div class="mb-3">
       <label for="apellidos" class="form-label">Apellidos</label>
-      <input [ngClass]="{'is-invalid' : hasError('apellidos','required')}" type="text" class="form-control"
-        id="apellidos" formControlName="apellidos">
-      <div class="text-danger small" *ngIf="hasError('apellidos','required')">Apellidos son requeridos</div>
+      <input [ngClass]="{'is-invalid' : hasError('apellidos','required')}" type="text" class="form-control" id="apellidos" formControlName="apellidos">
+      <div class="text-danger small" *ngIf="hasError('apellidos', 'required')">Apellidos son requeridos</div>
     </div>
 
     <div class="mb-3">
       <label for="tipoId" class="form-label">Tipo de Identificación</label>
-      <select class="form-select" id="tipoId" formControlName="tipoId">
-        <option value="DNI">DNI</option>
-        <option value="NIE">NIE</option>
-        <option value="Pasaporte">Pasaporte</option>
-      </select>
+        <select class="form-select" id="tipoId" formControlName="tipoId">
+          <option value="DNI">DNI</option>
+          <option value="NIE">NIE</option>
+          <option value="Pasaporte">Pasaporte</option>
+        </select>
     </div>
 
-    <div class="mb-3">
-      <label for="identificacion" class="form-label">{{ tipoId }}</label>
-      <input [ngClass]="{'is-invalid' : hasError('identificacion','required') || hasError('identificacion','pattern')}" type="text" class="form-control" id="identificacion" formControlName="identificacion">
-      <div class="text-danger small" *ngIf="hasError('identificacion','required')">{{ tipoId }} es requerido</div>
-      <div class="text-danger small" *ngIf="hasError('identificacion', 'pattern')">
-        <ng-container [ngSwitch]="tipoId">
-          <div *ngSwitchCase="'DNI'">Formato de DNI inválido. Ejemplo: 12345678A</div>
-          <div *ngSwitchCase="'NIE'">Formato de NIE inválido. Ejemplo: X1234567B</div>
-          <div *ngSwitchCase="'Pasaporte'">Formato de pasaporte inválido (6–9 caracteres alfanuméricos).</div>
-        </ng-container>
-      </div>
+     <div class="mb-3">
+      <label for="id" class="form-label">{{ tipoId }}</label>
+      <input [ngClass]="{'is-invalid' : hasError('id','required')}" type="text" class="form-control" id="id" formControlName="id">
+      <div class="text-danger small" *ngIf="hasError('id', 'required')">{{ tipoId }} es requerido</div>
     </div>
 
-    <div class="mb-3">
+     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input [ngClass]="{'is-invalid' : hasError('email','required') || hasError('email','email')}" type="text"
-        class="form-control" id="email" formControlName="email">
+      <input [ngClass]="{'is-invalid' : hasError('email','required') || hasError('email','email')}" type="text" class="form-control" id="email" formControlName="email">
       <div class="text-danger small" *ngIf="hasError('email','required')">Email es requerido</div>
       <div class="text-danger small" *ngIf="hasError('email','email')">Formato de email inválido</div>
     </div>
 
     <div class="mb-3">
-      <label for="password" class="form-label">Contraseña</label>
-      <input [ngClass]="{'is-invalid' : hasError('password','required') || hasError('password','pattern')}"
-        type="password" class="form-control" id="password" formControlName="password">
-      <div class="text-danger small" *ngIf="hasError('password','required')">Contraseña es requerida</div>
-      <div class="text-danger small" *ngIf="hasError('password','pattern')"> La contraseña debe tener mínimo 8
-        caracteres, e incluir mayúsculas, minúsculas, números y un símbolo especial.</div>
+      <label for="password" class="form-label">Password</label>
+      <input [ngClass]="{'is-invalid' : hasError('password','required') || hasError('password','pattern')}" type="password" class="form-control" id="password" formControlName="password">
+      <div class="text-danger small" *ngIf="hasError('password','required')">Contraseña es requerido</div>
+      <div class="text-danger small" *ngIf="hasError('password','pattern')">La contraseña debe tener mínimo 8 caracteres e incluir mayúsculas, minúsculas, números y un símbolo especial.</div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="formularioRegistro.invalid">Enviar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!formularioContacto.valid">Enviar</button>
   </form>
 </div>
+
+<!-- Formato de DNI inválido. Ejemplo: 12345678A
+Formato de NIE inválido. Ejemplo: X1234567B
+Formato de pasaporte inválido (6–9 caracter
+
+-->
