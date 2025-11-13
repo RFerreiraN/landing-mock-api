@@ -26,6 +26,7 @@
       <label for="id" class="form-label">{{ tipoId }}</label>
       <input [ngClass]="{'is-invalid' : hasError('id','required')}" type="text" class="form-control" id="id" formControlName="id">
       <div class="text-danger small" *ngIf="hasError('id', 'required')">{{ tipoId }} es requerido</div>
+      
       <ng-container *ngIf="hasError('id','pattern')" [ngSwitch]="tipoId">
         <div class="text-danger small" *ngSwitchCase="'DNI'" >Formato de DNI inválido. Ejemplo: 12345678A</div>
         <div class="text-danger small" *ngSwitchCase="'NIE'">Formato de NIE inválido. Ejemplo: X1234567B</div>
