@@ -8,6 +8,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent implements OnInit{
+  formularioContacto : FormGroup
+
+  constructor(private fb : FormBuilder){
+      this.formularioContacto = this.fb.group({
+        nombre : ['', Validators.required]
+      })
+  }
+
   ngOnInit(): void {
     
   }
