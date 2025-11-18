@@ -1,10 +1,52 @@
 <div class="container">
-  <h1>Formulario de contacto:</h1>
+
+  <form [formGroup]="formularioContacto" (ngSubmit)="enviar(formularioContacto)">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input [ngClass]="{'is-invalid' : hasError('nombre','required')}" type="text" class="form-control" id="nombre" formControlName="nombre">
+      <div class="text-danger small" *ngIf="hasError('nombre','required')">Nombre es requerido</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input [ngClass]="{'is-invalid' : hasError('apellidos','required')}" type="text" class="form-control" id="apellidos" formControlName="apellidos">
+      <div class="text-danger small" *ngIf="hasError('apellidos','required')">Apellidos son requeridos</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input [ngClass]="{'is-invalid' : hasError('email','required') || hasError('email','email')}" type="text" class="form-control" id="email" formControlName="email">
+      <div class="text-danger small" *ngIf="hasError('email','required')">Email es requerido</div>
+      <div class="text-danger small" *ngIf="hasError('email','email')">Formato de email inválido</div>
+    </div>
+
+     <div class="mb-3">
+      <label for="id" class="form-label">Tipo de identificación</label>
+      <select class="form-select" id="id" formControlName="id">
+        <option value="DNI">DNI</option>
+        <option value="NIE">NIE</option>
+        <option value="Pasaporte">Pasaporte</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipoId" class="form-label">{{ tipoId }}</label>
+      <input type="text" class="form-control" id="tipoId" formControlName="tipoId">
+    </div>
+
+    <div class="mb-3">
+      <label for="contraseña" class="form-label">Password</label>
+      <input [ngClass]="{'is-invalid' : hasError('password','required') || hasError('password','pattern')}" type="password" class="form-control" id="contraseña" formControlName="password">
+      <div class="text-danger small" *ngIf="hasError('password','pattern')">La contraseña debe tener mínimo 8 caracteres e incluir mayúsculas, minúsculas, números y un símbolo especial.</div>
+      <div class="text-danger small" *ngIf="hasError('password','required')">La contraseña es requerida</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="formularioContacto.invalid">Enviar</button>
+  </form>
 </div>
 
 <!-- 
 Formato de DNI inválido. Ejemplo: 12345678A
 Formato de NIE inválido. Ejemplo: X1234567B
 Formato de pasaporte inválido (6–9 caracteres)
-La contraseña debe tener mínimo 8 caracteres e incluir mayúsculas, minúsculas, números y un símbolo especial.
 -->

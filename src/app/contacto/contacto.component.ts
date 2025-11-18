@@ -8,16 +8,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent implements OnInit{
-  formularioContacto : FormGroup
+  formularioContacto : FormGroup;
+  tipoId : string = 'DNI'
 
   constructor(private fb : FormBuilder){
       this.formularioContacto = this.fb.group({
-        nombre : ['', Validators.required]
+        nombre : ['', Validators.required],
+        apellidos : ['', Validators.required],
+        email : ['', [Validators.required, Validators.email]],
+        id : ['DNI'],
+        tipoId : [],
+        password : ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]+$/)]]
       })
+  }
+
+  enviar(form : FormGroup){
+    console.log(form.value)
+    form.reset()
   }
 
   ngOnInit(): void {
     
+  }
+
+  hasError( controlInput : string, typeError : string){
+    return this.formularioContacto.get(controlInput)?.hasError(typeError) &&
+    (this.formularioContacto.get(controlInput)?.touched || this.formularioContacto.get(controlInput)?.dirty)
   }
   
 }
