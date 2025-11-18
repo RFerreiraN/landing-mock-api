@@ -28,7 +28,8 @@ export class ContactoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    
+
+   
   }
 
   hasError( controlInput : string, typeError : string){
