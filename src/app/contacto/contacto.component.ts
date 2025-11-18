@@ -28,8 +28,45 @@ export class ContactoComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.formularioContacto.get('id')?.valueChanges.subscribe(valor => {
+      this.tipoId = valor;
+      this.validatorsDeId(valor)
+    })
+    this.validatorsDeId(this.tipoId)
+  }
 
-   
+  validatorsDeId( tipo: string){
+    const controlId = this.formularioContacto.get('tipoId');
+
+    if(!controlId) return
+
+    controlId.clearValidators();
+
+    switch(tipo){
+      case 'DNI':
+        controlId.setValidators([
+          Validators.required,
+          Validators.pattern(/^[0-9]{8}[A-Z]$/)
+        ])
+      break;
+
+      case 'NIE' :
+        controlId.setValidators([
+          Validators.required,
+          Validators.pattern(/^[XYZ][0-9]{7}[A-Z]$/)
+        ])
+      break;
+
+      case 'Pasaporte' :
+        controlId.setValidators([
+          Validators.required,
+          Validators.pattern(/^[A-Z0-9]{6,9}$/)
+        ])
+      break;
+
+    }
+
+    controlId.updateValueAndValidity();
   }
 
   hasError( controlInput : string, typeError : string){

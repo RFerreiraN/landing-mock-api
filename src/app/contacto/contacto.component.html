@@ -3,24 +3,27 @@
   <form [formGroup]="formularioContacto" (ngSubmit)="enviar(formularioContacto)">
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre</label>
-      <input [ngClass]="{'is-invalid' : hasError('nombre','required')}" type="text" class="form-control" id="nombre" formControlName="nombre">
+      <input [ngClass]="{'is-invalid' : hasError('nombre','required')}" type="text" class="form-control" id="nombre"
+        formControlName="nombre">
       <div class="text-danger small" *ngIf="hasError('nombre','required')">Nombre es requerido</div>
     </div>
 
     <div class="mb-3">
       <label for="apellidos" class="form-label">Apellidos</label>
-      <input [ngClass]="{'is-invalid' : hasError('apellidos','required')}" type="text" class="form-control" id="apellidos" formControlName="apellidos">
+      <input [ngClass]="{'is-invalid' : hasError('apellidos','required')}" type="text" class="form-control"
+        id="apellidos" formControlName="apellidos">
       <div class="text-danger small" *ngIf="hasError('apellidos','required')">Apellidos son requeridos</div>
     </div>
 
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input [ngClass]="{'is-invalid' : hasError('email','required') || hasError('email','email')}" type="text" class="form-control" id="email" formControlName="email">
+      <input [ngClass]="{'is-invalid' : hasError('email','required') || hasError('email','email')}" type="text"
+        class="form-control" id="email" formControlName="email">
       <div class="text-danger small" *ngIf="hasError('email','required')">Email es requerido</div>
       <div class="text-danger small" *ngIf="hasError('email','email')">Formato de email inválido</div>
     </div>
 
-     <div class="mb-3">
+    <div class="mb-3">
       <label for="id" class="form-label">Tipo de identificación</label>
       <select class="form-select" id="id" formControlName="id">
         <option value="DNI">DNI</option>
@@ -31,13 +34,21 @@
 
     <div class="mb-3">
       <label for="tipoId" class="form-label">{{ tipoId }}</label>
-      <input type="text" class="form-control" id="tipoId" formControlName="tipoId">
+      <input [ngClass]="{'is-invalid' : hasError('tipoId','required')}" type="text" class="form-control" id="tipoId" formControlName="tipoId">
+      <div class="text-danger small" *ngIf="hasError('tipoId','required')">{{ tipoId }} es requerido</div>
+      <ng-container *ngIf="hasError('tipoId','pattern')" [ngSwitch]="tipoId">
+        <div class="text-danger small" *ngSwitchCase="'DNI'">Formato de DNI inválido. Ejemplo: 12345678A</div>
+        <div class="text-danger small" *ngSwitchCase="'NIE'">Formato de NIE inválido. Ejemplo: X1234567B</div>
+        <div class="text-danger small" *ngSwitchCase="'Pasaporte'">Formato de pasaporte inválido (6–9 caracteres)</div>
+      </ng-container>
     </div>
 
     <div class="mb-3">
       <label for="contraseña" class="form-label">Password</label>
-      <input [ngClass]="{'is-invalid' : hasError('password','required') || hasError('password','pattern')}" type="password" class="form-control" id="contraseña" formControlName="password">
-      <div class="text-danger small" *ngIf="hasError('password','pattern')">La contraseña debe tener mínimo 8 caracteres e incluir mayúsculas, minúsculas, números y un símbolo especial.</div>
+      <input [ngClass]="{'is-invalid' : hasError('password','required') || hasError('password','pattern')}"
+        type="password" class="form-control" id="contraseña" formControlName="password">
+      <div class="text-danger small" *ngIf="hasError('password','pattern')">La contraseña debe tener mínimo 8 caracteres
+        e incluir mayúsculas, minúsculas, números y un símbolo especial.</div>
       <div class="text-danger small" *ngIf="hasError('password','required')">La contraseña es requerida</div>
     </div>
 
@@ -45,8 +56,3 @@
   </form>
 </div>
 
-<!-- 
-Formato de DNI inválido. Ejemplo: 12345678A
-Formato de NIE inválido. Ejemplo: X1234567B
-Formato de pasaporte inválido (6–9 caracteres)
--->
