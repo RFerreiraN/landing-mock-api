@@ -3,9 +3,9 @@ export interface Producto {
     title:       string;
     price:       number;
     description: string;
-    category:    Category;
+    category?:    Category;
     image:       string;
-    rating:      Rating;
+    rating?:      Rating;
 }
 
 export enum Category {
