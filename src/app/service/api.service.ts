@@ -20,6 +20,10 @@ export class ApiService {
     return this._httpClient.get<Producto>(`${this.baseURL}/${id}`)
   }
 
+  public updateProduct(id: number | string ) : Observable<Producto>{
+    return this._httpClient.put<Producto>(`${this.baseURL}/${id}`)
+  }
+
   public deleteProducto( id : number | string ) : Observable<Producto>{
     return this._httpClient.delete<Producto>(`${this.baseURL}/${id}`)
   }}
