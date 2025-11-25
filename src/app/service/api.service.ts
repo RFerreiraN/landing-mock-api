@@ -34,6 +34,8 @@ export class ApiService {
     return this._httpClient.put<Producto>(`${this.baseURL}/${id}`, this.nuevoProducto)
   }
 
+
+
   public deleteProducto( id : number | string ) : Observable<Producto>{
     return this._httpClient.delete<Producto>(`${this.baseURL}/${id}`)
   }}
