@@ -13,8 +13,8 @@ export class ApiService {
 
   constructor( private _httpClient  : HttpClient){ }
 
-  public getProducts(): Observable<Producto[]>{
-    return this._httpClient.get<Producto[]>(this.baseURL)
+  public getProducts() : Observable<Producto[]>{
+    return this._httpClient.get<Producto[]>(`${this.baseURL}`)
   }
 
   public getProductById(id: number | string) : Observable<Producto>{
@@ -40,6 +40,8 @@ export class ApiService {
   public pathProduct(id : number | string ) : Observable<Partial<Producto>>{
     return this._httpClient.patch<Partial<Producto>>(`${this.baseURL}/${id}`, this.datoPatch)
   }
+
+
 
 
 
