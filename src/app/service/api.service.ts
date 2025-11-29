@@ -33,18 +33,6 @@ export class ApiService {
     return this._httpClient.put<Producto>(`${this.baseURL}/${id}`, this.nuevoProducto)
   }
 
-  datoPatch = {
-    price : '200'
-  }
-
-  public pathProduct(id : number | string ) : Observable<Partial<Producto>>{
-    return this._httpClient.patch<Partial<Producto>>(`${this.baseURL}/${id}`, this.datoPatch)
-  }
-
-
-
-
-
   public deleteProducto( id : number | string ) : Observable<Producto>{
     return this._httpClient.delete<Producto>(`${this.baseURL}/${id}`)
   }}
