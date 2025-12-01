@@ -37,8 +37,8 @@ export class ApiService {
     price : 25
   }
 
-  public patchProduct(id : number | string ) : Observable<Partial<Producto>>{
-    return this._httpClient.patch<Partial<Producto>>(`${this.baseURL}/${id}`, this.dataPatch)
+  public patchProduct(id : number | string ) : Observable<Producto>{
+    return this._httpClient.patch<Producto>(`${this.baseURL}/${id}`, this.dataPatch)
   }
 
   public deleteProducto( id : number | string ) : Observable<Producto>{
