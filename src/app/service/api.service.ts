@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   dataPatch = {
-    price : 25
+    price : 30
   }
 
   public patchProduct(id : number | string ) : Observable<Producto>{
