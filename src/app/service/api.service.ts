@@ -10,37 +10,7 @@ import { CurrencyPipe } from '@angular/common';
 export class ApiService {
 
   private baseURL = 'https://fakestoreapi.com/products'
-
-  constructor( private _httpClient  : HttpClient){ }
-
-  public getProducts() : Observable<Producto[]>{
-    return this._httpClient.get<Producto[]>(`${this.baseURL}`)
-  }
-
-  public getProductById(id: number | string) : Observable<Producto>{
-    return this._httpClient.get<Producto>(`${this.baseURL}/${id}`)
-  }
-
-    nuevoProducto : Producto =  {
-        id: 25,
-        title: 'cosas',
-        price:  25, 
-        description: 'skate',
-        image: '',
+    constructor(){
+      
     }
-
-  public updateProduct(id: number | string ) : Observable<Producto>{
-    return this._httpClient.put<Producto>(`${this.baseURL}/${id}`, this.nuevoProducto)
   }
-
-  dataPatch = {
-    price : 30
-  }
-
-  public patchProduct(id : number | string ) : Observable<Producto>{
-    return this._httpClient.patch<Producto>(`${this.baseURL}/${id}`, this.dataPatch)
-  }
-
-  public deleteProducto( id : number | string ) : Observable<Producto>{
-    return this._httpClient.delete<Producto>(`${this.baseURL}/${id}`)
-  }}
