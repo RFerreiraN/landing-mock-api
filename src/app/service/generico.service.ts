@@ -13,23 +13,23 @@ export class GenericoService {
     private _http : HttpClient
   ) { }
 
-  public getAllItem<T>() : Observable<T[]>{
+  public getAllItem<T>(url : string ) : Observable<T[]>{
     return this._http.get<T[]>(this.baseURL)
   }
 
-  public getItem<T>(id : number | string ) : Observable<T>{
+  public getItem<T>(url : string, id : number | string ) : Observable<T>{
     return this._http.get<T>(`${this.baseURL}/${id}`)
   }
 
-  public newItem<T>(item : T) : Observable<T>{
+  public newItem<T>(url : string,  item : T) : Observable<T>{
     return this._http.post<T>(this.baseURL, item)
   }
 
-  public updateItem<T>(id: number | string, item : T) : Observable<T>{
+  public updateItem<T>(url : string,  id: number | string, item : T) : Observable<T>{
     return this._http.put<T>(`${this.baseURL}/${id}`, item)
   }
 
-  public deleteItem<T>(id : number | string ) : Observable<T>{
+  public deleteItem<T>(url : string,  id : number | string ) : Observable<T>{
     return this._http.delete<T>(`${this.baseURL}/${id}`)
   }
 }

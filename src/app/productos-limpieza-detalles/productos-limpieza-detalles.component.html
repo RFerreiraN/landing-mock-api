@@ -1,7 +1,8 @@
 <div class="card ms-4" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">{{producto?.title}}</h5>
-    <p class="card-text">{{producto?.description}}</p>
+    <h5 class="card-title">{{usuario?.name?.firstname}} {{usuario?.name?.firstname}}</h5>
+    <p class="card-text">{{usuario?.email}}</p>
+    <p class="card-text">{{usuario?.phone}}</p>
     <button [routerLink]="['/productosLimpieza']" class="btn btn-primary">Volver</button>
   </div>
 </div>
