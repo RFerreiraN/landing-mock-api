@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { productList } from './productos.mock';
+import { ApiService } from '../service/api.service';
+import { Producto } from '../Model/producto.model';
 
 @Component({
   selector: 'app-productos-limpieza',
@@ -8,12 +9,16 @@ import { productList } from './productos.mock';
 })
 export class ProductosLimpiezaComponent implements OnInit{
 
-    productoList = productList;
+    productoList : Producto[] = [];
     
     constructor( 
-     
+     private _apiService : ApiService
     ){}
 
     ngOnInit(): void {
+      this._apiService.getAllProducts().subscribe( data => {
+         this.productoList = data;
+         console.log(data)
+      })
     }
 }
