@@ -11,26 +11,26 @@ export class CartsService {
   private baseURL = 'https://fakestoreapi.com/carts';
 
   constructor(
-    private _cartsService : HttpClient
+    private _http : HttpClient
   ) { }
 
   public getAllCarts() : Observable<Cart[]>{
-    return this._cartsService.get<Cart[]>(this.baseURL).pipe(retry(2))
+    return this._http.get<Cart[]>(this.baseURL).pipe(retry(2))
   }  
 
   public getCart(id : number | string ) : Observable<Cart>{
-    return this._cartsService.get<Cart>(`${this.baseURL}/${id}`).pipe(retry(2))
+    return this._http.get<Cart>(`${this.baseURL}/${id}`).pipe(retry(2))
   }
 
   public newCart(carta : Cart) : Observable<Cart>{
-    return this._cartsService.post<Cart>(this.baseURL, carta)
+    return this._http.post<Cart>(this.baseURL, carta)
   }
 
   public updateCart(id: number, carta : Cart) : Observable<Cart>{
-    return this._cartsService.put<Cart>(`${this.baseURL}/${id}`, carta)
+    return this._http.put<Cart>(`${this.baseURL}/${id}`, carta)
   }
 
   public deleteCart(id: number | string ) : Observable<Cart>{
-    return this._cartsService.delete<Cart>(`${this.baseURL}/${id}`)
+    return this._http.delete<Cart>(`${this.baseURL}/${id}`)
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../service/api.service';
-import { Producto } from '../Model/producto.model';
+import { UsuariosService } from '../service/usuarios.service';
+import { Users } from '../Model/usuarios.model';
 
 @Component({
   selector: 'app-productos-limpieza',
@@ -9,16 +9,19 @@ import { Producto } from '../Model/producto.model';
 })
 export class ProductosLimpiezaComponent implements OnInit{
 
-    productoList : Producto[] = [];
-    
-    constructor( 
-     private _apiService : ApiService
+    usuarios : Users[] = [];
+   
+    constructor(
+      private _usersService : UsuariosService
     ){}
 
     ngOnInit(): void {
-      this._apiService.getAllProducts().subscribe( data => {
-         this.productoList = data;
-         console.log(data)
-      })
+        this._usersService.getAllUsers().subscribe( data => {
+          this.usuarios = data;
+          console.log(this.usuarios)
+        })
+      }
+
+    
     }
-}
+  

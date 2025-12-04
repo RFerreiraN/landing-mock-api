@@ -1,3 +1,14 @@
-<div class="container">
+<h1>Lista de Usuarios:</h1>
 
+<div class="container">
+  <div class="productos-grid">
+    <div class="card" *ngFor="let usuario of usuarios">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Name</strong>: {{ usuario.name.firstname }} {{usuario.name.lastname}}</h5>
+        <p class="card-text"><strong>CP</strong> :{{ usuario.address.zipcode }}</p>
+        <p class="card-text"><strong>Street </strong>: {{usuario.address.street}}</p>
+        <p class="card-text"><strong>Number</strong>: {{usuario.address.number}}</p>
+      </div>
+    </div>
+  </div>
 </div>
