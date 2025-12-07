@@ -21,7 +21,7 @@ export class ProductosComponent implements OnInit{
       const data : Producto[] = await res.json()
       this.productos = data
     } catch (error) {
-      console.error('Ha ocurrido el siguiente error: ', error)
+      console.error('Ha ocurrido un error: ', error)
     }
   } 
 
